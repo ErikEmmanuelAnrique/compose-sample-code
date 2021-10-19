@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+
+        class Counter extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    count: 0
+                };
+            }
+
+
+            render() {
+                return (
+                    <div>
+                        <h3>{this.state.count}</h3>
+                        <button onClick={this.add}>Add</button>
+                    </div>
+                );
+            }
+
+            add = () => {
+                this.setState({
+                    count: this.state.count + 1
+                });
+            }
+        }
+
+        class App extends React.Component {
+            render() {
+                return (
+                    <Counter />
+                );
+            }
+        }
+
+        ReactDOM.render(<App />, document.querySelector("#app"));
+
+    </script>
+</body>
+
+</html>
