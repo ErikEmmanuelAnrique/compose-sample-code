@@ -24,4 +24,12 @@
         android:id="@+id/newItemFragment"
         android:name="com.example.myapplication.NewItemFragment"
         android:label="NewItemFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.myapplication.features.profile.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_newItemFragment"
+            app:destination="@id/newItemFragment" />
+    </fragment>
 </navigation>
