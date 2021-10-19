@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/itemListFragment"
+        android:title="Posts" />
+    <item
+        android:id="@+id/newItemFragment"
+        android:title="Create" />
+    <item
+        android:id="@+id/themeSwitchFragment"
+        android:title="Config" />
+</menu>
