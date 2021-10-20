@@ -19,7 +19,13 @@
     <fragment
         android:id="@+id/itemDetailFragment"
         android:name="com.example.myapplication.ui.features.home.details.ItemDetailFragment"
-        android:label="Post" />
+        android:label="Post" >
+        <argument
+            android:name="post"
+            app:argType="com.example.myapplication.model.Post"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
     <fragment
         android:id="@+id/newItemFragment"
         android:name="com.example.myapplication.ui.features.newpost.NewItemFragment"

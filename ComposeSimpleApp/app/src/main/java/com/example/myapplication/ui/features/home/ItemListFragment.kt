@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.features.home
 
+import android.os.Bundle
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -20,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.myapplication.BaseComposableFragment
 import com.example.myapplication.R
 import com.example.myapplication.model.Post
@@ -68,7 +70,10 @@ class ItemListFragment : BaseComposableFragment() {
                 .requiredHeight(96.dp)
                 .fillMaxWidth()
                 .clickable {
-                    findNavController().navigate(R.id.goToItemDetail)
+                    findNavController().run {
+                        val args = Bundle().apply { putSerializable("POST", post) }
+                        navigate(R.id.goToItemDetail, args)
+                    }
                 }
         ) {
             Card(

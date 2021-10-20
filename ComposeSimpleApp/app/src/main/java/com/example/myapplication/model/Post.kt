@@ -1,5 +1,7 @@
 package com.example.myapplication.model
 
+import java.io.Serializable
+
 data class Post(
     val imageResId: Int? = null,
     val postId: UInt,
@@ -7,4 +9,4 @@ data class Post(
     val authorName: String,
     val date: String,
     val content: String
-    )
+    ) : Serializable
