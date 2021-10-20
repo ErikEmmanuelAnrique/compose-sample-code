@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/itemListFragment">
+
+    <fragment
+        android:id="@+id/themeSwitchFragment"
+        android:name="com.example.myapplication.ThemeSwitchFragment"
+        android:label="ThemeSwitchFragment" />
+    <fragment
+        android:id="@+id/itemListFragment"
+        android:name="com.example.myapplication.ItemListFragment"
+        android:label="Home" >
+        <action
+            android:id="@+id/goToItemDetail"
+            app:destination="@id/itemDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemDetailFragment"
+        android:name="com.example.myapplication.ItemDetailFragment"
+        android:label="Post" />
+    <fragment
+        android:id="@+id/newItemFragment"
+        android:name="com.example.myapplication.NewItemFragment"
+        android:label="New Post" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.myapplication.features.profile.ProfileFragment"
+        android:label="Profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_themeSwitchFragment"
+            app:destination="@id/themeSwitchFragment" />
+    </fragment>
+</navigation>
