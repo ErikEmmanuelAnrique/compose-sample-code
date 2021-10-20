@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui.features.home
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -14,9 +14,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.fragment.findNavController
+import com.example.myapplication.BaseComposableFragment
+import com.example.myapplication.R
+import com.example.myapplication.model.Post
+import com.example.myapplication.utils.DataMocks
 
 class ItemListFragment : BaseComposableFragment() {
 
@@ -29,12 +36,12 @@ class ItemListFragment : BaseComposableFragment() {
                 ),
             verticalAlignment = Alignment.Top
         ) {
-            Feed(List(60) {})
+            Feed(DataMocks.postsList)
         }
     }
 
     @Composable
-    private fun Feed(postsList: List<Any>) {
+    private fun Feed(postsList: List<Post>) {
         LazyColumn(
             Modifier.wrapContentHeight()
         ) {
@@ -44,7 +51,7 @@ class ItemListFragment : BaseComposableFragment() {
             items(items = postsList) {
                 post ->
                 Column {
-                    ItemBody()
+                    ItemBody(post)
                     Spacer(modifier = Modifier.height(8.dp))
                 }
             }
@@ -55,7 +62,7 @@ class ItemListFragment : BaseComposableFragment() {
     }
 
     @Composable
-    private fun ItemBody() {
+    private fun ItemBody(post: Post) {
         Box(
             modifier = Modifier
                 .requiredHeight(96.dp)
@@ -75,21 +82,26 @@ class ItemListFragment : BaseComposableFragment() {
                         contentScale = ContentScale.FillWidth,
                         alignment = Alignment.TopCenter
                     )
-                    Spacer(modifier = Modifier.width(8.dp))
                     Column(
                         modifier = Modifier
                             .fillMaxHeight()
-                            .padding(4.dp),
-                        verticalArrangement = Arrangement.SpaceBetween
+                            .padding(vertical = 4.dp, horizontal = 8.dp),
                     ) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(text = "This is the autor name")
-                            Text(text = "19 nov 2021")
+                            Text(text = post.authorName)
+                            Text(text = post.date)
                         }
-                        Text(text = "This is a placeholder text description this should never be longer than three lines of text on this part of the app")
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = post.content,
+                            textAlign = TextAlign.Start,
+                            maxLines = 3,
+                            overflow = TextOverflow.Ellipsis,
+                            lineHeight = 16.sp
+                        )
                     }
                 }
             }
