@@ -18,6 +18,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.MainActivityBinding
 import com.example.myapplication.ui.theme.MyApplicationTheme
@@ -33,5 +35,13 @@ class MainActivity : AppCompatActivity() {
         navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
 
         binding.bottomNavigationView.setupWithNavController(navHostFragment.navController)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.profileFragment,
+                R.id.itemListFragment,
+                R.id.newItemFragment
+            )
+        )
+        setupActionBarWithNavController(navHostFragment.navController, appBarConfiguration)
     }
 }
