@@ -49,11 +49,12 @@ class ItemListFragment : BaseComposableFragment() {
             item {
                 Spacer(modifier = Modifier.height(16.dp))
             }
-            items(items = postsList) {
-                post ->
-                Column {
-                    ItemBody(post)
-                    Spacer(modifier = Modifier.height(8.dp))
+            postsList.forEach { post ->
+                item {
+                    Column {
+                        ItemBody(post)
+                        Spacer(modifier = Modifier.height(8.dp))
+                    }
                 }
             }
             item {
