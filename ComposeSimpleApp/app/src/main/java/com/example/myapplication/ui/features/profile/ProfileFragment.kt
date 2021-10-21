@@ -72,7 +72,6 @@ class ProfileFragment : BaseComposableFragment() {
                 alignment = Alignment.TopCenter
             )
         }
-
     }
 
     @Composable
