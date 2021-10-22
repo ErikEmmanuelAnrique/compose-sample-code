@@ -22,6 +22,10 @@ import androidx.compose.ui.unit.*
 import com.example.myapplication.BaseComposableFragment
 import com.example.myapplication.R
 import com.example.myapplication.model.User
+import com.example.myapplication.ui.ProfileImage
+import com.example.myapplication.ui.Statistic
+import com.example.myapplication.ui.UserDescription
+import com.example.myapplication.ui.UserName
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import com.example.myapplication.utils.DataMocks
 
@@ -58,7 +62,7 @@ class ProfileFragment : BaseComposableFragment() {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            ProfileImage(user.profilePictureId)
+            ProfileImage(user.profilePictureId, 120.dp)
             ProfileStats(
                 postsCount = user.postsCount,
                 likesCount = user.likesCount,
@@ -68,23 +72,7 @@ class ProfileFragment : BaseComposableFragment() {
     }
 
     @Composable
-    private fun ProfileImage(imageResource: Int) {
-        Card(
-            shape = CircleShape,
-            border = BorderStroke(1.dp, Color.LightGray)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.profilepic),
-                contentDescription = "ProfilePicture",
-                modifier = Modifier.size(120.dp),
-                contentScale = ContentScale.FillWidth,
-                alignment = Alignment.TopCenter
-            )
-        }
-    }
-
-    @Composable
-    private fun ProfileStats(postsCount: UInt, likesCount: UInt, interactionsCount: UInt) {
+    private fun ProfileStats(postsCount: Int, likesCount: Int, interactionsCount: Int) {
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly
             )
@@ -96,47 +84,11 @@ class ProfileFragment : BaseComposableFragment() {
     }
 
     @Composable
-    private fun Statistic(valueName: String, value: UInt) {
-        Column {
-            Text(
-                text = value.toString(),
-                style = TextStyle(
-                    fontSize = 15.sp,
-                    color = Color.Black,
-                ),
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
-            Spacer(modifier = Modifier.padding(top = 8.dp))
-            Text(
-                text = valueName,
-                maxLines = 1,
-                style = TextStyle(
-                    fontSize = 13.sp,
-                    color = Color.DarkGray,
-                    textAlign = TextAlign.Center,
-                    lineHeight = 24.sp,
-                ),
-                modifier = Modifier.widthIn(min = 80.dp)
-            )
-        }
-    }
-
-    @Composable
     private fun ProfileDescription(name: String, description: String) {
         Column {
             UserName(name = name)
             UserDescription(description = description)
         }
-    }
-
-    @Composable
-    private fun UserName(name: String) {
-        Text(text = name)
-    }
-
-    @Composable
-    private fun UserDescription(description: String) {
-        Text(text = description)
     }
 
     @Preview

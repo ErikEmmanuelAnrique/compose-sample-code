@@ -22,7 +22,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.room.Room
 import com.example.myapplication.databinding.MainActivityBinding
+import com.example.myapplication.model.room.PostDatabase
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : AppCompatActivity() {
@@ -51,5 +53,9 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         navController.navigateUp()
         return super.onSupportNavigateUp()
+    }
+
+    companion object {
+        lateinit var database: PostDatabase
     }
 }

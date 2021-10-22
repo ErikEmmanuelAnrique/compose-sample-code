@@ -7,12 +7,12 @@ import com.example.myapplication.model.User
 object DataMocks {
 
     val currentUser = User(
-        1u,
+        1,
         "Todd Howard",
         R.drawable.profilepic,
-        10u,
-        3u,
-        14u,
+        10,
+        3,
+        14,
         "Game director of Bethesda Game Studios. Creator of Skyrim and recursive functions which helped with recursive functions which helped with recursive functions which helped with recursive functions which helped with recursive functions which helped with recursive functions."
     )
     
@@ -51,12 +51,13 @@ object DataMocks {
 
     val postsList = List(30) {
         Post(
-            null,
             it.toUInt(),
             1u,
+            null,
                 currentUser.name,
             "${it + 1} Dec 2020",
-            textSamples[it]
+            textSamples[it],
+            listOf()
         )
     }
 }
