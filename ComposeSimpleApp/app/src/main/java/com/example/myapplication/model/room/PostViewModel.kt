@@ -4,23 +4,22 @@ import android.app.Application
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.model.PostEntity
 import com.example.myapplication.utils.DataMocks
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val readAllData: LiveData<List<PostEntity>>
     private val repository: PostRepository
     val posts: MutableState<List<PostEntity>> = mutableStateOf(listOf())
 
     init {
         val postDao = PostDatabase.getDataBase(application).postDao()
         repository = PostRepository(postDao)
-        readAllData = repository.getAllPosts
         updatePostList()
     }
 
@@ -43,9 +42,12 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             DataMocks.currentUser.id,
             null,
             DataMocks.currentUser.name,
-            "today",
+            getCurrentDateAndTime(),
             content
         )
         addPost(post)
     }
+
+    fun getCurrentDateAndTime(): String = SimpleDateFormat("dd/MMM/yyyy").format(Calendar.getInstance().time)
+    
 }

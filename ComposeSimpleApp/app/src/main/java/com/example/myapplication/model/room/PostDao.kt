@@ -12,9 +12,6 @@ interface PostDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(postEntity: PostEntity)
 
-    @Query("SELECT * FROM post_table ORDER BY postId ASC")
-    fun getAllPosts() : LiveData<List<PostEntity>>
-
-    @Query("SELECT * FROM post_table ORDER BY postId ASC")
+    @Query("SELECT * FROM post_table ORDER BY postId DESC")
     suspend fun getPosts() : List<PostEntity>
 }

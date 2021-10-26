@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
-import com.example.myapplication.BaseComposableFragment
+import com.example.myapplication.ui.BaseComposableFragment
 import com.example.myapplication.R
 import com.example.myapplication.model.room.PostViewModel
 import com.example.myapplication.ui.InteractButton
