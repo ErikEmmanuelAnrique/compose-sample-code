@@ -142,7 +142,10 @@ fun PostListItem(post: PostEntity, onClick: (currentPost: PostEntity) -> Unit) {
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(text = post.authorName)
-                        Text(text = post.date)
+                        Text(
+                            text = post.date,
+                            style = MaterialTheme.typography.caption
+                        )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(

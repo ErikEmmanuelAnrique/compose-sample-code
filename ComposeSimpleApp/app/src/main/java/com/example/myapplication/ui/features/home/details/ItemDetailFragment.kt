@@ -16,13 +16,14 @@ import com.example.myapplication.model.Post
 import com.example.myapplication.ui.InteractButton
 import com.example.myapplication.ui.ProfileImage
 import com.example.myapplication.ui.UserName
+import com.example.myapplication.ui.features.home.ItemListFragment.Companion.POST_KEY
 import com.example.myapplication.utils.DataMocks
 
 class ItemDetailFragment : BaseComposableFragment() {
 
     @Composable
     override fun MainComposableLayout() {
-        PostDetail(post = arguments?.getSerializable("POST")!! as Post)
+        PostDetail(post = arguments?.getSerializable(POST_KEY)!! as Post)
     }
 
     @Composable

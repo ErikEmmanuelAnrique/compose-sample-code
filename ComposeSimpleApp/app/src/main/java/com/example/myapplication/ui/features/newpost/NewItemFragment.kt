@@ -26,13 +26,8 @@ class NewItemFragment : BaseComposableFragment() {
 
     private lateinit var postViewModel: PostViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun initFragment() {
         postViewModel = ViewModelProvider(requireActivity()).get()
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     @Composable

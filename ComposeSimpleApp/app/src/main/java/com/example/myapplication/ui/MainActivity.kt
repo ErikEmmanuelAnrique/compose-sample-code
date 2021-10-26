@@ -38,8 +38,4 @@ class MainActivity : AppCompatActivity() {
         navController.navigateUp()
         return super.onSupportNavigateUp()
     }
-
-    companion object {
-        lateinit var database: PostDatabase
-    }
 }

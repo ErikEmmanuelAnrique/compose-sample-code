@@ -25,13 +25,8 @@ class ItemListFragment : BaseComposableFragment() {
 
     private lateinit var postViewModel: PostViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun initFragment() {
         postViewModel = ViewModelProvider(requireActivity()).get()
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     @Composable
@@ -90,8 +85,12 @@ class ItemListFragment : BaseComposableFragment() {
             )
         }
         findNavController().run {
-            val args = Bundle().apply { putSerializable("POST", serializablePost) }
+            val args = Bundle().apply { putSerializable(POST_KEY, serializablePost) }
             navigate(R.id.goToItemDetail, args)
         }
+    }
+
+    companion object {
+        const val POST_KEY = "POST"
     }
 }
