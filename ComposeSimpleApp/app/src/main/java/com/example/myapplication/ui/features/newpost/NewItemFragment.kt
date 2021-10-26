@@ -66,10 +66,12 @@ class NewItemFragment : BaseComposableFragment() {
             )
             Spacer(modifier = Modifier.height(8.dp))
             InteractButton(
-                onClick = { if (input.isNotBlank()) {
-                    postViewModel.createNewPost(input)
+                onClick = {
+                    with(input) {
+                        if (isNotBlank()) postViewModel.createNewPost(this)
+                    }
                     input = ""
-                    } },
+                },
                 imageResourceId = R.drawable.ic_add,
                 buttonLabel = "Add post...",
                 widthPercent = 1f

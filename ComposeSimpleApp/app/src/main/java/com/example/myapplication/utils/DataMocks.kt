@@ -51,13 +51,12 @@ object DataMocks {
 
     val postsList = List(30) {
         Post(
-            it.toUInt(),
-            1u,
+            it,
+            1,
             null,
                 currentUser.name,
             "${it + 1} Dec 2020",
-            textSamples[it],
-            listOf()
+            textSamples[it]
         )
     }
 }

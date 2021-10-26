@@ -1,6 +1,8 @@
 package com.example.myapplication.model.room
 
 import android.app.Application
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -13,16 +15,25 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     private val readAllData: LiveData<List<PostEntity>>
     private val repository: PostRepository
+    val posts: MutableState<List<PostEntity>> = mutableStateOf(listOf())
 
     init {
         val postDao = PostDatabase.getDataBase(application).postDao()
         repository = PostRepository(postDao)
         readAllData = repository.getAllPosts
+        updatePostList()
     }
 
-    fun addPost(post: PostEntity) {
+    private fun updatePostList() {
+        viewModelScope.launch {
+            posts.value = repository.getPosts()
+        }
+    }
+
+    private fun addPost(post: PostEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addPost(post)
+            updatePostList()
         }
     }
 
@@ -37,5 +48,4 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         )
         addPost(post)
     }
-
 }

@@ -6,20 +6,23 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 data class Post(
-    val postId: UInt,
-    val authorID: UInt,
+    val postId: Int,
+    val authorID: Int,
     val imageResId: Int? = null,
     val authorName: String,
     val date: String,
-    val content: String,
-    val likes: List<UInt>
+    val content: String
     ) : Serializable
 
 @Entity(tableName = "post_table")
 data class PostEntity(
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    var postId: Int
+    var postId: Int,
+    var authorID: Int,
+    var imageResId: Int?,
+    var authorName: String,
+    var date: String,
+    var content: String
 ) {
-    constructor(postId: Int, authorID: Int, imageResId: Int?, authorName: String, date: String, content: String) : this(postId)
 }

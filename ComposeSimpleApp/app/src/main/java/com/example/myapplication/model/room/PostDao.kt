@@ -14,4 +14,7 @@ interface PostDao {
 
     @Query("SELECT * FROM post_table ORDER BY postId ASC")
     fun getAllPosts() : LiveData<List<PostEntity>>
+
+    @Query("SELECT * FROM post_table ORDER BY postId ASC")
+    suspend fun getPosts() : List<PostEntity>
 }

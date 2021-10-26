@@ -10,4 +10,5 @@ class PostRepository(private val dao: PostDao) {
         dao.insert(postEntity)
     }
 
+    suspend fun getPosts() = dao.getPosts()
 }

@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.R
 import com.example.myapplication.model.Post
+import com.example.myapplication.model.PostEntity
 
 @Composable
 fun InteractButton(
@@ -114,7 +115,7 @@ fun ProfileImage(imageResource: Int, imageSize: Dp) {
 }
 
 @Composable
-fun PostListItem(post: Post, onClick: (currentPost: Post) -> Unit) {
+fun PostListItem(post: PostEntity, onClick: (currentPost: PostEntity) -> Unit) {
     Box(
         modifier = Modifier
             .requiredHeight(96.dp)
