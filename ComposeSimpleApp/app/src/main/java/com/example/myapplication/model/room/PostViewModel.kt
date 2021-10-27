@@ -48,6 +48,10 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         addPost(post)
     }
 
-    fun getCurrentDateAndTime(): String = SimpleDateFormat("dd/MMM/yyyy").format(Calendar.getInstance().time)
+    fun getCurrentDateAndTime(): String = SimpleDateFormat(TIME_FORMAT).format(Calendar.getInstance().time)
+
+    companion object{
+        const val TIME_FORMAT = "dd/MMM/yyyy"
+    }
     
 }

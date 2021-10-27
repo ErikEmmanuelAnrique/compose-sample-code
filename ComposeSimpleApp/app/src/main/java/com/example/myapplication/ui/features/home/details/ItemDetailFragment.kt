@@ -122,6 +122,15 @@ class ItemDetailFragment : BaseComposableFragment() {
     @Preview(showBackground = true)
     @Composable
     override fun DefaultPreview() {
-        PostDetail(post = DataMocks.postsList[0])
+        PostDetail(post =
+            Post(
+                postId = 0,
+                authorID = 0,
+                imageResId = null,
+                authorName = "me",
+                date = "today",
+                content = "this is a post"
+            )
+        )
     }
 }
