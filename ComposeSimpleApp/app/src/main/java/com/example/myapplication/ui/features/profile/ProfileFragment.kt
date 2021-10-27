@@ -1,4 +1,4 @@
-package com.example.myapplication.features.profile
+package com.example.myapplication.ui.features.profile
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -13,8 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -23,7 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import com.example.myapplication.BaseComposableFragment
 import com.example.myapplication.R
+import com.example.myapplication.model.User
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.example.myapplication.utils.DataMocks
 
 class ProfileFragment : BaseComposableFragment() {
 
@@ -39,15 +39,18 @@ class ProfileFragment : BaseComposableFragment() {
                     modifier = Modifier
                     .padding(start = 16.dp, end = 16.dp)
                 ) {
-                    ProfileBanner()
-                    ProfileDescription()
+                    ProfileBanner(DataMocks.currentUser)
+                    ProfileDescription(
+                        name = DataMocks.currentUser.name,
+                        description = DataMocks.currentUser.description
+                    )
                 }
             }
         }
     }
 
     @Composable
-    private fun ProfileBanner() {
+    private fun ProfileBanner(user: User) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -55,13 +58,17 @@ class ProfileFragment : BaseComposableFragment() {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            ProfileImage()
-            ProfileStats()
+            ProfileImage(user.profilePictureId)
+            ProfileStats(
+                postsCount = user.postsCount,
+                likesCount = user.likesCount,
+                interactionsCount = user.interactionsCount
+            )
         }
     }
 
     @Composable
-    private fun ProfileImage() {
+    private fun ProfileImage(imageResource: Int) {
         Card(
             shape = CircleShape,
             border = BorderStroke(1.dp, Color.LightGray)
@@ -74,22 +81,22 @@ class ProfileFragment : BaseComposableFragment() {
                 alignment = Alignment.TopCenter
             )
         }
-
     }
 
     @Composable
-    private fun ProfileStats() {
+    private fun ProfileStats(postsCount: UInt, likesCount: UInt, interactionsCount: UInt) {
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly
-            ){
-            Statistic(valueName = "Posts", value = 12)
-            Statistic(valueName = "Likes", value = 66)
-            Statistic(valueName = "Interactions", value = 450)
+            )
+        {
+            Statistic(valueName = "Posts", value = postsCount)
+            Statistic(valueName = "Likes", value = likesCount)
+            Statistic(valueName = "Interactions", value = interactionsCount)
         }
     }
 
     @Composable
-    private fun Statistic(valueName: String, value: Int) {
+    private fun Statistic(valueName: String, value: UInt) {
         Column {
             Text(
                 text = value.toString(),
@@ -115,21 +122,21 @@ class ProfileFragment : BaseComposableFragment() {
     }
 
     @Composable
-    private fun ProfileDescription() {
+    private fun ProfileDescription(name: String, description: String) {
         Column {
-            UserName()
-            UserDescription()
+            UserName(name = name)
+            UserDescription(description = description)
         }
     }
 
     @Composable
-    private fun UserName() {
-        Text(text = "Todd Howard")
+    private fun UserName(name: String) {
+        Text(text = name)
     }
 
     @Composable
-    private fun UserDescription() {
-        Text(text = "Game developer, creator of the critical acclaimed title \"The elder scrolls V: Skyrim\". Please buy Skyrim.")
+    private fun UserDescription(description: String) {
+        Text(text = description)
     }
 
     @Preview

@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.MenuItem
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -26,15 +27,13 @@ import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: MainActivityBinding
-    lateinit var navHostFragment: NavHostFragment
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
-
-        binding.bottomNavigationView.setupWithNavController(navHostFragment.navController)
+        navController = (supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment).navController
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.profileFragment,
@@ -42,6 +41,15 @@ class MainActivity : AppCompatActivity() {
                 R.id.newItemFragment
             )
         )
-        setupActionBarWithNavController(navHostFragment.navController, appBarConfiguration)
+        navController.apply {
+            binding.bottomNavigationView.setupWithNavController(this)
+            setupActionBarWithNavController(this, appBarConfiguration)
+            enableOnBackPressed(true)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        navController.navigateUp()
+        return super.onSupportNavigateUp()
     }
 }

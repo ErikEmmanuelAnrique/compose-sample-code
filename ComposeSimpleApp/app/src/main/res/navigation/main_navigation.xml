@@ -10,7 +10,7 @@
         android:label="ThemeSwitchFragment" />
     <fragment
         android:id="@+id/itemListFragment"
-        android:name="com.example.myapplication.ItemListFragment"
+        android:name="com.example.myapplication.ui.features.home.ItemListFragment"
         android:label="Home" >
         <action
             android:id="@+id/goToItemDetail"
@@ -18,15 +18,21 @@
     </fragment>
     <fragment
         android:id="@+id/itemDetailFragment"
-        android:name="com.example.myapplication.ItemDetailFragment"
-        android:label="Post" />
+        android:name="com.example.myapplication.ui.features.home.details.ItemDetailFragment"
+        android:label="Post" >
+        <argument
+            android:name="post"
+            app:argType="com.example.myapplication.model.Post"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
     <fragment
         android:id="@+id/newItemFragment"
-        android:name="com.example.myapplication.NewItemFragment"
+        android:name="com.example.myapplication.ui.features.newpost.NewItemFragment"
         android:label="New Post" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.myapplication.features.profile.ProfileFragment"
+        android:name="com.example.myapplication.ui.features.profile.ProfileFragment"
         android:label="Profile" >
         <action
             android:id="@+id/action_profileFragment_to_themeSwitchFragment"
