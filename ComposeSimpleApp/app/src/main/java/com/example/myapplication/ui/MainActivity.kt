@@ -1,29 +1,15 @@
-package com.example.myapplication
+package com.example.myapplication.ui
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.MenuItem
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.myapplication.R
 import com.example.myapplication.databinding.MainActivityBinding
-import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.example.myapplication.model.room.PostDatabase
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: MainActivityBinding

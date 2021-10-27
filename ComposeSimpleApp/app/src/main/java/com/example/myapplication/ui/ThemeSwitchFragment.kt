@@ -1,8 +1,9 @@
-package com.example.myapplication
+package com.example.myapplication.ui
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.myapplication.ui.BaseComposableFragment
 
 class ThemeSwitchFragment : BaseComposableFragment() {
 

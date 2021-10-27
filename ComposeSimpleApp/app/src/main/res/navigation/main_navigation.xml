@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/themeSwitchFragment"
-        android:name="com.example.myapplication.ThemeSwitchFragment"
+        android:name="com.example.myapplication.ui.ThemeSwitchFragment"
         android:label="ThemeSwitchFragment" />
     <fragment
         android:id="@+id/itemListFragment"
