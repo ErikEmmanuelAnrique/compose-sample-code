@@ -12,18 +12,17 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.R
-import com.example.myapplication.model.Post
 import com.example.myapplication.model.PostEntity
 
 @Composable
@@ -36,7 +35,10 @@ fun InteractButton(
     Button(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(widthPercent),
-        border = BorderStroke(1.dp, Color.Black)
+        border = BorderStroke(
+            dimensionResource(id = R.dimen.minimum_margin),
+            Color.Black
+        )
     ) {
         Row(
             horizontalArrangement = Arrangement.Center
@@ -45,7 +47,9 @@ fun InteractButton(
                 painter = painterResource(id = imageResourceId),
                 contentDescription = null
             )
-            Spacer(modifier = Modifier.width(4.dp))
+            Spacer(modifier = Modifier.width(
+                dimensionResource(id = R.dimen.tiny_margin)
+            ))
             Text(
                 modifier = Modifier.align(Alignment.CenterVertically),
                 text = buttonLabel,
@@ -66,7 +70,9 @@ fun Statistic(valueName: String, value: Int) {
             ),
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
-        Spacer(modifier = Modifier.padding(top = 8.dp))
+        Spacer(modifier = Modifier.padding(
+            top = dimensionResource(id = R.dimen.small_margin
+            )))
         Text(
             text = valueName,
             maxLines = 1,
@@ -76,7 +82,9 @@ fun Statistic(valueName: String, value: Int) {
                 textAlign = TextAlign.Center,
                 lineHeight = 24.sp,
             ),
-            modifier = Modifier.widthIn(min = 80.dp)
+            modifier = Modifier.widthIn(
+                min = dimensionResource(id = R.dimen.stats_width)
+            )
         )
     }
 }
@@ -102,11 +110,14 @@ fun UserDescription(description: String) {
 fun ProfileImage(imageResource: Int, imageSize: Dp) {
     Card(
         shape = CircleShape,
-        border = BorderStroke(1.dp, Color.LightGray)
+        border = BorderStroke(
+            dimensionResource(id = R.dimen.minimum_margin),
+            Color.LightGray
+        )
     ) {
         Image(
             painter = painterResource(id = imageResource),
-            contentDescription = "ProfilePicture",
+            contentDescription = stringResource(R.string.profile_picture_content_description),
             modifier = Modifier.size(size = imageSize),
             contentScale = ContentScale.FillWidth,
             alignment = Alignment.TopCenter
@@ -118,24 +129,32 @@ fun ProfileImage(imageResource: Int, imageSize: Dp) {
 fun PostListItem(post: PostEntity, onClick: (currentPost: PostEntity) -> Unit) {
     Box(
         modifier = Modifier
-            .requiredHeight(96.dp)
+            .requiredHeight(
+                dimensionResource(id = R.dimen.medium_image_size)
+            )
             .fillMaxWidth()
             .clickable {
                 onClick(post)
             }
     ) {
         Card(
-            border = BorderStroke(1.dp, Color.LightGray),
+            border = BorderStroke(
+                dimensionResource(id = R.dimen.minimum_margin),
+                Color.LightGray
+            ),
         ) {
             Row {
                 ProfileImage(
                     imageResource = R.drawable.placeholder_profile_pic,
-                    imageSize = 96.dp
+                    imageSize = dimensionResource(id = R.dimen.medium_image_size)
                 )
                 Column(
                     modifier = Modifier
                         .fillMaxHeight()
-                        .padding(vertical = 4.dp, horizontal = 8.dp),
+                        .padding(
+                            vertical = dimensionResource(id = R.dimen.tiny_margin),
+                            horizontal = dimensionResource(id = R.dimen.small_margin)
+                        ),
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -147,7 +166,9 @@ fun PostListItem(post: PostEntity, onClick: (currentPost: PostEntity) -> Unit) {
                             style = MaterialTheme.typography.caption
                         )
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(
+                        dimensionResource(id = R.dimen.regular_margin)
+                    ))
                     Text(
                         text = post.content,
                         textAlign = TextAlign.Start,

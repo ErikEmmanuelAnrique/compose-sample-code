@@ -1,14 +1,12 @@
 package com.example.myapplication.ui.features.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
@@ -34,7 +32,7 @@ class ItemListFragment : BaseComposableFragment() {
         Row(
             modifier = Modifier
                 .padding(
-                    horizontal = 16.dp
+                    horizontal = dimensionResource(id = R.dimen.regular_margin)
                 ),
             verticalAlignment = Alignment.Top
         ) {
@@ -47,10 +45,14 @@ class ItemListFragment : BaseComposableFragment() {
         val postList = postViewModel.posts.value
         LazyColumn(
             modifier = Modifier.wrapContentHeight(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(
+                dimensionResource(id = R.dimen.small_margin)
+            )
         ) {
             item {
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(
+                    dimensionResource(id = R.dimen.small_margin)
+                ))
             }
             postList.forEach { post ->
                 item {
@@ -62,7 +64,9 @@ class ItemListFragment : BaseComposableFragment() {
                 }
             }
             item {
-                Spacer(modifier = Modifier.height(56.dp))
+                Spacer(modifier = Modifier.height(
+                    dimensionResource(id = R.dimen.huge_margin)
+                ))
             }
         }
     }

@@ -13,6 +13,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
@@ -35,22 +37,28 @@ class NewItemFragment : BaseComposableFragment() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = dimensionResource(id = R.dimen.regular_margin))
             ,
             verticalArrangement = Arrangement.Top
         ) {
             var input by remember { mutableStateOf("")}
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(
+                dimensionResource(id = R.dimen.regular_margin)
+            ))
             BasicTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .requiredHeight(height = 256.dp)
+                    .requiredHeight(
+                        dimensionResource(id = R.dimen.post_box_size)
+                    )
                     .border(
-                        width = 1.dp,
+                        width = dimensionResource(id = R.dimen.minimum_margin),
                         color = Color.DarkGray,
                         shape = MaterialTheme.shapes.medium
                     )
-                    .padding(8.dp)
+                    .padding(
+                        dimensionResource(id = R.dimen.small_margin)
+                    )
                     .verticalScroll(
                         state = rememberScrollState(0)
                     )
@@ -59,7 +67,9 @@ class NewItemFragment : BaseComposableFragment() {
                 onValueChange = { input = it },
                 textStyle = MaterialTheme.typography.body1,
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(
+                dimensionResource(id = R.dimen.small_margin)
+            ))
             InteractButton(
                 onClick = {
                     with(input) {
@@ -68,7 +78,7 @@ class NewItemFragment : BaseComposableFragment() {
                     input = ""
                 },
                 imageResourceId = R.drawable.ic_add,
-                buttonLabel = "Add post...",
+                buttonLabel = stringResource(R.string.add_post_button_label),
                 widthPercent = 1f
             )
         }
