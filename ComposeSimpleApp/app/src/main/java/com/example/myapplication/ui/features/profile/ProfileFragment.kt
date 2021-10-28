@@ -7,8 +7,11 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
+import com.example.myapplication.R
 import com.example.myapplication.ui.BaseComposableFragment
 import com.example.myapplication.model.User
 import com.example.myapplication.ui.ProfileImage
@@ -30,7 +33,9 @@ class ProfileFragment : BaseComposableFragment() {
             ) {
                 Column(
                     modifier = Modifier
-                    .padding(start = 16.dp, end = 16.dp)
+                    .padding(
+                        start = dimensionResource(id = R.dimen.regular_margin),
+                        end = dimensionResource(id = R.dimen.regular_margin))
                 ) {
                     ProfileBanner(DataMocks.currentUser)
                     ProfileDescription(
@@ -47,11 +52,17 @@ class ProfileFragment : BaseComposableFragment() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 24.dp, bottom = 16.dp),
+                .padding(
+                    top = dimensionResource(id = R.dimen.big_margin),
+                    bottom = dimensionResource(id = R.dimen.regular_margin)
+                ),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            ProfileImage(user.profilePictureId, 120.dp)
+            ProfileImage(
+                imageResource = user.profilePictureId,
+                imageSize = dimensionResource(id = R.dimen.big_image_size)
+            )
             ProfileStats(
                 postsCount = user.postsCount,
                 likesCount = user.likesCount,
@@ -66,9 +77,18 @@ class ProfileFragment : BaseComposableFragment() {
             horizontalArrangement = Arrangement.SpaceEvenly
             )
         {
-            Statistic(valueName = "Posts", value = postsCount)
-            Statistic(valueName = "Likes", value = likesCount)
-            Statistic(valueName = "Interactions", value = interactionsCount)
+            Statistic(
+                valueName = stringResource(R.string.posts_label),
+                value = postsCount
+            )
+            Statistic(
+                valueName = stringResource(R.string.likes_label),
+                value = likesCount
+            )
+            Statistic(
+                valueName = stringResource(R.string.interactions_label),
+                value = interactionsCount
+            )
         }
     }
 

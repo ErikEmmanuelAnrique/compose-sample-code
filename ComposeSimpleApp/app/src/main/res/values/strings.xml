@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ComposeSampleApp</string>
+    <string name="comment_button_label">Comment</string>
+    <string name="like_button_label">Like</string>
+    <string name="profile_picture_content_description">ProfilePicture</string>
+    <string name="add_post_button_label">Add post…</string>
+    <string name="posts_label">Posts</string>
+    <string name="likes_label">Likes</string>
+    <string name="interactions_label">Interactions</string>
+    <string name="post_count_label">Post#%1$d</string>
 </resources>

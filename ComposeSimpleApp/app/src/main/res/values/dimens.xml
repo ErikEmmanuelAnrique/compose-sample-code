@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="minimum_margin">1dp</dimen>
+    <dimen name="tiny_margin">4dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="medium_margin">12dp</dimen>
+    <dimen name="regular_margin">16dp</dimen>
+    <dimen name="big_margin">24dp</dimen>
+    <dimen name="large_margin">32dp</dimen>
+    <dimen name="huge_margin">56dp</dimen>
+
+    <dimen name="stats_width">80dp</dimen>
+
+    <dimen name="small_image_size">60dp</dimen>
+    <dimen name="medium_image_size">96dp</dimen>
+    <dimen name="big_image_size">120dp</dimen>
+
+    <dimen name="post_box_size">256dp</dimen>
+
+    <dimen name="small_font_size">13sp</dimen>
+    <dimen name="medium_font_size">15sp</dimen>
+    <dimen name="line_height">24sp</dimen>
+</resources>

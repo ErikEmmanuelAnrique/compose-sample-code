@@ -8,8 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.myapplication.ui.BaseComposableFragment
 import com.example.myapplication.R
 import com.example.myapplication.model.Post
@@ -30,30 +31,38 @@ class ItemDetailFragment : BaseComposableFragment() {
     private fun PostDetail(post: Post) {
         Column(
             Modifier
-                .padding(horizontal = 16.dp)
+                .padding(
+                    horizontal = dimensionResource(id = R.dimen.regular_margin)
+                )
                 .fillMaxSize()
         ) {
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(
+                dimensionResource(id = R.dimen.regular_margin)
+            ))
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 ProfileImage(
                     imageResource = R.drawable.placeholder_profile_pic,
-                    imageSize = 60.dp
+                    imageSize = dimensionResource(id = R.dimen.small_image_size)
                 )
-                Spacer(modifier = Modifier.width(32.dp))
+                Spacer(modifier = Modifier.width(
+                    dimensionResource(id = R.dimen.large_margin)
+                ))
                 UserName(
                     name = post.authorName,
                     modifier = Modifier.align(Alignment.CenterVertically)
                 )
             }
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(
+                dimensionResource(id = R.dimen.medium_margin)
+            ))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Post#${post.postId}",
+                    text = stringResource(R.string.post_count_label, post.postId),
                     style = MaterialTheme.typography.caption
                 )
                 Text(
@@ -61,24 +70,32 @@ class ItemDetailFragment : BaseComposableFragment() {
                     style = MaterialTheme.typography.caption
                 )
             }
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(
+                dimensionResource(id = R.dimen.big_margin)
+            ))
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .requiredHeight(height = 256.dp)
+                    .requiredHeight(
+                        height = dimensionResource(id = R.dimen.post_box_size)
+                    )
                     .border(
-                        width = 1.dp,
+                        width = dimensionResource(id = R.dimen.minimum_margin),
                         color = Color.DarkGray,
                         shape = MaterialTheme.shapes.medium
                     )
-                    .padding(8.dp)
+                    .padding(
+                        dimensionResource(id = R.dimen.small_margin)
+                    )
                     .verticalScroll(
                         state = rememberScrollState(0)
                     ),
                 text = post.content,
                 style = MaterialTheme.typography.body1
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(
+                dimensionResource(id = R.dimen.small_margin)
+            ))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -86,23 +103,34 @@ class ItemDetailFragment : BaseComposableFragment() {
                 InteractButton(
                     onClick = {},
                     imageResourceId = R.drawable.ic_like,
-                    buttonLabel = "Like",
+                    buttonLabel = stringResource(R.string.like_button_label),
                     widthPercent = 0.5f
                 )
                 InteractButton(
                     onClick = {},
                     imageResourceId = R.drawable.ic_comment,
-                    buttonLabel = "Comment",
+                    buttonLabel = stringResource(R.string.comment_button_label),
                     widthPercent = 1f
                 )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(
+                dimensionResource(id = R.dimen.regular_margin)
+            ))
         }
     }
 
     @Preview(showBackground = true)
     @Composable
     override fun DefaultPreview() {
-        PostDetail(post = DataMocks.postsList[0])
+        PostDetail(post =
+            Post(
+                postId = 0,
+                authorID = 0,
+                imageResId = null,
+                authorName = "me",
+                date = "today",
+                content = "this is a post"
+            )
+        )
     }
 }
